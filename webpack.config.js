@@ -11,10 +11,12 @@ module.exports = {
   output: {
     filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   devServer: {
     contentBase: './dist',
-    hot: true
+    historyApiFallback: true,
+    hot: true,
   },
   devtool: 'source-map',
   module: {
