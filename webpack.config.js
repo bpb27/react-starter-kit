@@ -45,10 +45,11 @@ module.exports = {
       filename: 'style.[hash].css',
     }),
     new HtmlWebpackPlugin({
+      favicon: 'public/favicon.ico',
       filename: 'index.html',
       hash: true,
       inject: false,
-      template: './src/index.html',
+      template: './public/index.html',
     }),
     new WebpackMd5Hash(),
   ],

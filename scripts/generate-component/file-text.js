@@ -4,6 +4,10 @@ import { string } from 'prop-types';
 import './${dashCase}.style.scss';
 
 export default class ${titleCaseName} extends React.Component {
+  static propTypes = {
+    name: string,
+  }
+
   render () {
     return (
       <div className="${camelCaseName}">
@@ -11,10 +15,6 @@ export default class ${titleCaseName} extends React.Component {
       </div>
     );
   }
-}
-
-titleCaseName.propTypes = {
-  name: string,
 }
 `);
 
