@@ -1,5 +1,5 @@
 {
-  "name": "webpack-4-tutorial",
+  "name": "react-starter-kit",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "generate": "node ./scripts/generate-component",
     "test": "jest ./src"
   },
-  "author": "",
+  "author": "Brendan",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.4.4",
