@@ -32,5 +32,5 @@ const generate = async ({ directory, componentName }) => {
   await fs.writeFile(`${componentPath}/${componentName}.test.js`, fileText.test(names));
   await fs.writeFile(`${componentPath}/index.js`, fileText.index(names));
 
-  console.log('\nsuccess!'); // eslint-disable-line
+  console.log('\nsuccess!'); // eslint-disable-line no-console
 };

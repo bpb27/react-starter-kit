@@ -36,7 +36,7 @@ import { shallow } from 'enzyme';
 import ${titleCaseName} from './${dashCase}.component';
 
 const createProps = () => ({
-
+  name: 'Warren Gangrenous Harding',
 });
 
 describe('${titleCaseName}', () => {
