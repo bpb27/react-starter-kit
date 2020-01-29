@@ -36,7 +36,6 @@
     "jest-prop-type-error": "^1.1.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
-    "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
     "readline": "^1.3.0",
     "sass-loader": "^7.1.0",
@@ -51,6 +50,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "express-static-gzip": "^2.0.5",
+    "jest-css-modules": "^2.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
@@ -60,7 +60,7 @@
       "test-setup"
     ],
     "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/test-setup/style-mock.js",
+      "\\.(css|scss)$": "<rootDir>/node_modules/jest-css-modules",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test-setup/file-mock.js"
     },
     "setupFiles": [
