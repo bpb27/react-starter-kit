@@ -11,14 +11,18 @@ Everything you need to build and deploy a React app.
 7. Setup for CI w/ Travis and deployment w/ Heroku
 
 ### Setup
-1. `npm i`
+`npm i`
 
-### Commands
-1. Dev server: `npm run dev`
-2. Prod build: `npm run build`
-3. Generate component: `npm run generate`
-4. Unit testing: `npm run test`
-5. Node server: `npm start`
+### Development
+`npm run dev`
+
+### Running a build with the node server
+`npm run build`
+`npm run start`
+
+### Additional
+1. Unit testing: `npm run test`
+2. Generate component: `npm run generate`
 
 ### Deploying
 This can be deployed to Heroku in just a few minutes.
