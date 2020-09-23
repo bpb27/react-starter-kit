@@ -1,5 +1,5 @@
-import { API_URL } from '../constants';
-import { request } from '../utils/request';
+import { API_URL } from 'constants';
+import { request } from 'utils/request';
 
 export default class ContactsAPI {
   constructor () {
