@@ -7,11 +7,16 @@ export default class ContactsList extends React.Component {
   static contextType = ContactsContext;
 
   render () {
+    const { contacts, remove } = this.context;
     return (
       <div className="contactsList">
         {
-          this.context.contacts.map(contact => (
-            <ContactDisplay data={contact} key={contact.id}/>
+          contacts.map(contact => (
+            <ContactDisplay
+              data={contact}
+              key={contact.id}
+              remove={remove}
+            />
           ))
         }
       </div>

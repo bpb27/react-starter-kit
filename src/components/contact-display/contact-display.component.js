@@ -1,5 +1,5 @@
 import React from 'react';
-import { shape, string } from 'prop-types';
+import { func, shape, string } from 'prop-types';
 import './contact-display.style.scss';
 
 export default class ContactDisplay extends React.Component {
@@ -10,15 +10,21 @@ export default class ContactDisplay extends React.Component {
       name: string,
       phone: string,
     }).isRequired,
+    remove: func.isRequired,
   }
 
   render () {
-    const { email, name, phone } = this.props.data;
+    const { data, remove } = this.props;
+    const { email, id, name, phone } = data;
     return (
       <div className="contactDisplay">
         <h4>{ name }</h4>
         <p>{ email }</p>
         <p>{ phone }</p>
+        <div>
+          <button>Edit</button>
+          <button onClick={() => remove(id)}>Delete</button>
+        </div>
       </div>
     );
   }

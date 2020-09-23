@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // populate a "DB" with 20 random contacts
 const contactsDB = new ContactsDB(
-  [...Array(20)].map((i) => ({
+  [...Array(20)].map(() => ({
     name: faker.name.findName(),
     email: faker.internet.exampleEmail(),
     phone: faker.phone.phoneNumberFormat(),
