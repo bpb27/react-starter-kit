@@ -6,20 +6,30 @@ export default class App extends React.Component {
   state = {
     contacts: [],
     contactsAPI: new ContactsAPI(),
+    error: null,
   };
 
   async componentDidMount () {
-    const contacts = await this.state.contactsAPI.findAll();
-    this.setState({ contacts });
+    const { data, error } = await this.state.contactsAPI.findAll();
+    if (data) this.setState({ contacts: data });
+    if (error) this.setState({ error });
   }
 
   render () {
+    const { contacts, error } = this.state;
     return (
       <div className="app">
         {
-          this.state.contacts.map(contact => {
-            <div>{contact.name}</div>;
-          })
+          error && <p>Failed to load contacts</p>
+        }
+        {
+          contacts.map(contact => (
+            <div key={contact.id}>
+              <h3>{ contact.name }</h3>
+              <p>{ contact.email }</p>
+              <p>{ contact.phone }</p>
+            </div>
+          ))
         }
       </div>
     );
