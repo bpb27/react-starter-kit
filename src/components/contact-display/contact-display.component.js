@@ -10,11 +10,12 @@ export default class ContactDisplay extends React.Component {
       name: string,
       phone: string,
     }).isRequired,
+    edit: func.isRequired,
     remove: func.isRequired,
   }
 
   render () {
-    const { data, remove } = this.props;
+    const { data, edit, remove } = this.props;
     const { email, id, name, phone } = data;
     return (
       <div className="contactDisplay">
@@ -22,7 +23,7 @@ export default class ContactDisplay extends React.Component {
         <p>{ email }</p>
         <p>{ phone }</p>
         <div>
-          <button>Edit</button>
+          <button onClick={() => edit(id)}>Edit</button>
           <button onClick={() => remove(id)}>Delete</button>
         </div>
       </div>

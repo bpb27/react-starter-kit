@@ -3,9 +3,11 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-export const request = async ({ body, method, route }) => {
+export const request = async ({ method, params, route }) => {
   try {
-    const result = await fetch(route, { body, headers, method });
+    const options = { headers, method };
+    if (params) options.body = JSON.stringify(params);
+    const result = await fetch(route, options);
     const data = await result.json();
     return { data };
   } catch (error) {

@@ -9,7 +9,7 @@ export default class ContactsAPI {
   }
 
   create (params) {
-    return request({ body: params, method: 'POST', route: this.base });
+    return request({ method: 'POST', params, route: this.base });
   }
 
   delete (id) {
@@ -24,7 +24,7 @@ export default class ContactsAPI {
     return request({ method: 'GET', route: this.byId(id) });
   }
 
-  update (id) {
-    return request({ method: 'PUT', route: this.byId(id) });
+  update (id, params) {
+    return request({ method: 'PUT', params, route: this.byId(id) });
   }
 }
