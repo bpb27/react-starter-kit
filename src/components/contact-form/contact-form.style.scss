@@ -1,3 +1,33 @@
-.contactForm {
+#contact-form {
+  background: gray;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 
+  .contactForm {
+    background: white;
+    padding: 25px;
+
+    form {
+      display: flex;
+      flex-flow: column;
+
+      .inputGroup {
+        display: flex;
+        flex-flow: column;
+        margin: 10px 0;
+      }
+
+      .buttonGroup {
+        display: flex;
+        margin: 10px 0;
+
+        button {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 }

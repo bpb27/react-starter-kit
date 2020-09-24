@@ -23,7 +23,6 @@ export default class ContactForm extends React.Component {
 
   save = () => {
     this.props.save({ ...this.state, id: this.props.data?.id });
-    this.props.cancel();
   }
 
   update = event => {
@@ -33,13 +32,28 @@ export default class ContactForm extends React.Component {
   render () {
     const { email, name, phone } = this.state;
     return (
-      <div className="contactForm">
-        <h2>{ this.props.headerText }</h2>
-        <input name="name" onChange={this.update} type="text" value={name}/>
-        <input name="email" onChange={this.update} type="text" value={email}/>
-        <input name="phone" onChange={this.update} type="text" value={phone}/>
-        <button onClick={this.save}>Save</button>
-        <button onClick={this.props.cancel}>Cancel</button>
+      <div id="contact-form" className="background">
+        <div className="contactForm">
+          <h2>{ this.props.headerText }</h2>
+          <form>
+            <div className="inputGroup">
+              <label htmlFor="name">Name</label>
+              <input name="name" onChange={this.update} type="text" value={name}/>
+            </div>
+            <div className="inputGroup">
+              <label htmlFor="email">Email</label>
+              <input name="email" onChange={this.update} type="text" value={email}/>
+            </div>
+            <div className="inputGroup">
+              <label htmlFor="phone">Phone</label>
+              <input name="phone" onChange={this.update} type="text" value={phone}/>
+            </div>
+            <div className="buttonGroup">
+              <button onClick={this.save} type="submit">Save</button>
+              <button onClick={this.props.cancel}>Cancel</button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

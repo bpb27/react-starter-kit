@@ -1,6 +1,6 @@
 import React from 'react';
 import './app.style.scss';
-import ContactsProvider from 'api/contacts';
+import ContactsProvider from 'contexts/contacts';
 import ContactsList from 'components/contacts-list';
 
 export default class App extends React.Component {

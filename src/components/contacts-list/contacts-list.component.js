@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContactsContext } from 'api/contacts';
+import { ContactsContext } from 'contexts/contacts';
 import ContactDisplay from 'components/contact-display';
 import ContactForm from 'components/contact-form';
 import './contacts-list.style.scss';
@@ -9,46 +9,47 @@ export default class ContactsList extends React.Component {
 
   render () {
     const {
-      closeCreator,
-      closeEditor,
+      closeCreateForm,
+      closeEditForm,
       contacts,
-      creating,
-      editing,
-      openCreator,
-      openEditor,
+      create,
+      editingContact,
+      isCreating,
+      isEditing,
+      openCreateForm,
+      openEditForm,
       remove,
-      saveCreate,
-      saveEdit,
+      update,
     } = this.context;
 
     return (
       <div className="contactsList">
         {
-          editing && (
+          isEditing && (
             <ContactForm
-              data={editing}
+              data={editingContact}
               headerText="Edit contact"
-              save={saveEdit}
-              cancel={closeEditor}
+              save={update}
+              cancel={closeEditForm}
             />
           )
         }
         {
-          creating ? (
+          isCreating ? (
             <ContactForm
               headerText="Create contact"
-              save={saveCreate}
-              cancel={closeCreator}
+              save={create}
+              cancel={closeCreateForm}
             />
           ) : (
-            <button onClick={openCreator}>Add new contact</button>
+            <button onClick={openCreateForm}>Add new contact</button>
           )
         }
         {
           contacts.map(contact => (
             <ContactDisplay
               data={contact}
-              edit={openEditor}
+              edit={openEditForm}
               key={contact.id}
               remove={remove}
             />
