@@ -11,7 +11,8 @@ const ContactForm = ({ cancel, data, headerText, save }) => {
 
   const saveForm = event => {
     event.preventDefault();
-    save({ email, id: data?.id, name, phone });
+    const id = data?.id;
+    save({ email, id, name, phone });
   };
 
   return (
@@ -38,7 +39,7 @@ const ContactForm = ({ cancel, data, headerText, save }) => {
             value={phone}
           />
           <ButtonGroup>
-            <button onClick={save}>Save</button>
+            <button type="submit">Save</button>
             <button onClick={cancel}>Cancel</button>
           </ButtonGroup>
         </form>
@@ -50,10 +51,10 @@ const ContactForm = ({ cancel, data, headerText, save }) => {
 ContactForm.propTypes = {
   cancel: func.isRequired,
   data: shape({
-    email: string,
-    id: string,
-    name: string,
-    phone: string,
+    email: string.isRequired,
+    id: string.isRequired,
+    name: string.isRequired,
+    phone: string.isRequired,
   }),
   headerText: string.isRequired,
   save: func.isRequired,
