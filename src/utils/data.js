@@ -11,3 +11,20 @@ export const omit = (object, propList) => (
     .filter(key => !propList.includes(key))
     .reduce((hash, key) => ({ ...hash, [key]: object[key] }), {})
 );
+
+export const pick = (object, propList) => (
+  Object.keys(object)
+    .filter(key => propList.includes(key))
+    .reduce((hash, key) => ({ ...hash, [key]: object[key] }), {})
+);
+
+export const textMatch = (search = '', target, fields) => {
+  if (typeof target === 'string') {
+    return target.toLowerCase().includes(search.toLowerCase());
+  } else if (fields) {
+    return !!Object.values(pick(target, fields))
+      .find(value => value.toLowerCase().includes(search.toLowerCase()));
+  } else {
+    return true;
+  }
+};
