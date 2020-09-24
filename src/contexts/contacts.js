@@ -2,6 +2,7 @@ import React from 'react';
 import { node } from 'prop-types';
 import { request } from 'utils/request';
 import { addItem, findItem, omit, removeItem, updateItem } from 'utils/data';
+import ContactForm from 'components/contact-form';
 import { API_URL } from 'constants';
 
 const ROUTE_BASE = `${API_URL}/contacts`;
@@ -100,10 +101,35 @@ export default class ContactsProvider extends React.Component {
     };
   }
 
+  get modal () {
+    const { editingContact, isCreating, isEditing } = this.state;
+    if (isEditing) {
+      return (
+        <ContactForm
+          data={editingContact}
+          headerText="Edit contact"
+          save={this.update}
+          cancel={this.closeEditForm}
+        />
+      );
+    } else if (isCreating) {
+      return (
+        <ContactForm
+          headerText="Create contact"
+          save={this.create}
+          cancel={this.closeCreateForm}
+        />
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <ContactsContext.Provider value={this.value}>
-        {this.props.children}
+        { this.modal }
+        { this.props.children }
       </ContactsContext.Provider>
     );
   }

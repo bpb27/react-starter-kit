@@ -1,32 +1,32 @@
-import React from 'react';
-import { func, shape, string } from 'prop-types';
+import React, { useContext } from 'react';
+import { string } from 'prop-types';
+import { ContactsContext } from 'contexts/contacts';
 import styled from 'styled-components';
 
 const ContactContainer = styled.div`
   width: 300px;
 `;
 
-const ContactDisplay = ({ data, edit, remove }) => (
-  <ContactContainer>
-    <h4>{ data.name }</h4>
-    <p>{ data.email }</p>
-    <p>{ data.phone }</p>
-    <div>
-      <button onClick={() => edit(data.id)}>Edit</button>
-      <button onClick={() => remove(data.id)}>Delete</button>
-    </div>
-  </ContactContainer>
-);
+const ContactDisplay = ({ email, id, name, phone }) => {
+  const { openEditForm, remove } = useContext(ContactsContext);
+  return (
+    <ContactContainer>
+      <h4>{ name }</h4>
+      <p>{ email }</p>
+      <p>{ phone }</p>
+      <div>
+        <button onClick={() => openEditForm(id)}>Edit</button>
+        <button onClick={() => remove(id)}>Delete</button>
+      </div>
+    </ContactContainer>
+  );
+};
 
 ContactDisplay.propTypes = {
-  data: shape({
-    email: string,
-    id: string,
-    name: string,
-    phone: string,
-  }).isRequired,
-  edit: func.isRequired,
-  remove: func.isRequired,
+  email: string.isRequired,
+  id: string.isRequired,
+  name: string.isRequired,
+  phone: string.isRequired,
 };
 
 export default ContactDisplay;
