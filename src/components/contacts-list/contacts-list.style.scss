@@ -1,3 +1,13 @@
 .contactsList {
-  display: flex;
+  .list {
+    display: flex;
+    flex-flow: wrap;
+  }
+
+  .controls {
+    display: flex;
+    > * {
+      margin-right: 10px;
+    }
+  }
 }
