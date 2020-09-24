@@ -1,17 +1,21 @@
 import React from 'react';
-import './app.style.scss';
+import styled from 'styled-components';
 import ContactsProvider from 'contexts/contacts';
 import ContactsList from 'components/contacts-list';
+
+const AppContainer = styled.div`
+  font-family: monospace;
+`;
 
 export default class App extends React.Component {
   render () {
     return (
-      <div className="app">
+      <AppContainer>
         <h1>Contacts Manager</h1>
         <ContactsProvider>
           <ContactsList/>
         </ContactsProvider>
-      </div>
+      </AppContainer>
     );
   }
 }

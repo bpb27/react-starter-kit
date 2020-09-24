@@ -1,8 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 import { ContactsContext } from 'contexts/contacts';
 import ContactDisplay from 'components/contact-display';
 import ContactForm from 'components/contact-form';
-import './contacts-list.style.scss';
+
+const ControlsContainer = styled.div`
+  display: flex;
+  button {
+    margin-right: 10px;
+  }
+`;
+
+const ContactsContainer = styled.div`
+  display: flex;
+  flex-flow: wrap;
+`;
 
 export default class ContactsList extends React.Component {
   static contextType = ContactsContext;
@@ -33,37 +45,37 @@ export default class ContactsList extends React.Component {
 
     return (
       <div className="contactsList">
-        <div className="modals">
-          {
-            isEditing && (
-              <ContactForm
-                data={editingContact}
-                headerText="Edit contact"
-                save={update}
-                cancel={closeEditForm}
-              />
-            )
-          }
-          {
-            isCreating && (
-              <ContactForm
-                headerText="Create contact"
-                save={create}
-                cancel={closeCreateForm}
-              />
-            )
-          }
-        </div>
-        <div className="controls">
-          <button onClick={openCreateForm}>Add new contact</button>
+        {
+          isEditing && (
+            <ContactForm
+              data={editingContact}
+              headerText="Edit contact"
+              save={update}
+              cancel={closeEditForm}
+            />
+          )
+        }
+        {
+          isCreating && (
+            <ContactForm
+              headerText="Create contact"
+              save={create}
+              cancel={closeCreateForm}
+            />
+          )
+        }
+        <ControlsContainer>
+          <button onClick={openCreateForm}>
+            Add new contact
+          </button>
           <input
             onChange={event => this.setState({ search: event.target.value })}
             placeholder="Search by name..."
             type="text"
             value={this.state.search}
           />
-        </div>
-        <div className="list">
+        </ControlsContainer>
+        <ContactsContainer>
           {
             this.contacts.map(contact => (
               <ContactDisplay
@@ -74,7 +86,7 @@ export default class ContactsList extends React.Component {
               />
             ))
           }
-        </div>
+        </ContactsContainer>
       </div>
     );
   }

@@ -1,6 +1,10 @@
 import React from 'react';
 import { func, shape, string } from 'prop-types';
-import './contact-display.style.scss';
+import styled from 'styled-components';
+
+const ContactContainer = styled.div`
+  width: 300px;
+`;
 
 export default class ContactDisplay extends React.Component {
   static propTypes = {
@@ -18,7 +22,7 @@ export default class ContactDisplay extends React.Component {
     const { data, edit, remove } = this.props;
     const { email, id, name, phone } = data;
     return (
-      <div className="contactDisplay">
+      <ContactContainer>
         <h4>{ name }</h4>
         <p>{ email }</p>
         <p>{ phone }</p>
@@ -26,7 +30,7 @@ export default class ContactDisplay extends React.Component {
           <button onClick={() => edit(id)}>Edit</button>
           <button onClick={() => remove(id)}>Delete</button>
         </div>
-      </div>
+      </ContactContainer>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { func, shape, string } from 'prop-types';
-import './contact-form.style.scss';
+import { Modal, ModalBackground } from 'components/styled/modal';
+import { ButtonGroup, InputGroup } from 'components/styled/forms';
 
 export default class ContactForm extends React.Component {
   static propTypes = {
@@ -21,7 +22,8 @@ export default class ContactForm extends React.Component {
     phone: this.props.data?.phone,
   }
 
-  save = () => {
+  save = event => {
+    event.preventDefault();
     this.props.save({ ...this.state, id: this.props.data?.id });
   }
 
@@ -32,29 +34,29 @@ export default class ContactForm extends React.Component {
   render () {
     const { email, name, phone } = this.state;
     return (
-      <div id="contact-form" className="background">
-        <div className="contactForm">
+      <ModalBackground>
+        <Modal>
           <h2>{ this.props.headerText }</h2>
-          <form>
-            <div className="inputGroup">
+          <form onSubmit={this.save}>
+            <InputGroup>
               <label htmlFor="name">Name</label>
               <input name="name" onChange={this.update} type="text" value={name}/>
-            </div>
-            <div className="inputGroup">
+            </InputGroup>
+            <InputGroup>
               <label htmlFor="email">Email</label>
               <input name="email" onChange={this.update} type="text" value={email}/>
-            </div>
-            <div className="inputGroup">
+            </InputGroup>
+            <InputGroup>
               <label htmlFor="phone">Phone</label>
               <input name="phone" onChange={this.update} type="text" value={phone}/>
-            </div>
-            <div className="buttonGroup">
-              <button onClick={this.save} type="submit">Save</button>
+            </InputGroup>
+            <ButtonGroup>
+              <button type="submit">Save</button>
               <button onClick={this.props.cancel}>Cancel</button>
-            </div>
+            </ButtonGroup>
           </form>
-        </div>
-      </div>
+        </Modal>
+      </ModalBackground>
     );
   }
 }
