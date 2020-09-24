@@ -7,15 +7,13 @@ const AppContainer = styled.div`
   font-family: monospace;
 `;
 
-export default class App extends React.Component {
-  render () {
-    return (
-      <AppContainer>
-        <h1>Contacts Manager</h1>
-        <ContactsProvider>
-          <ContactsList/>
-        </ContactsProvider>
-      </AppContainer>
-    );
-  }
-}
+const App = () => (
+  <AppContainer>
+    <h1>Contacts Manager</h1>
+    <ContactsProvider>
+      <ContactsList/>
+    </ContactsProvider>
+  </AppContainer>
+);
+
+export default App;

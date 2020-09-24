@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { ContactsContext } from 'contexts/contacts';
 import ContactDisplay from 'components/contact-display';
 import ContactForm from 'components/contact-form';
+import Input from 'components/input';
 
 const ControlsContainer = styled.div`
   display: flex;
@@ -16,68 +17,61 @@ const ContactsContainer = styled.div`
   flex-flow: wrap;
 `;
 
-export default class ContactsList extends React.Component {
-  static contextType = ContactsContext;
+const ContactsList = () => {
+  const [search, updateSearch] = useState('');
+  const context = useContext(ContactsContext);
 
-  state = {
-    search: '',
-  }
+  const {
+    closeCreateForm,
+    closeEditForm,
+    contacts,
+    create,
+    editingContact,
+    isCreating,
+    isEditing,
+    openCreateForm,
+    openEditForm,
+    remove,
+    update,
+  } = context;
 
-  get contacts () {
-    const search = this.state.search.toLowerCase();
-    return this.context.contacts
-      .filter(contact => contact.name.toLowerCase().includes(search));
-  }
-
-  render () {
-    const {
-      closeCreateForm,
-      closeEditForm,
-      create,
-      editingContact,
-      isCreating,
-      isEditing,
-      openCreateForm,
-      openEditForm,
-      remove,
-      update,
-    } = this.context;
-
-    return (
-      <div className="contactsList">
-        {
-          isEditing && (
-            <ContactForm
-              data={editingContact}
-              headerText="Edit contact"
-              save={update}
-              cancel={closeEditForm}
-            />
-          )
-        }
-        {
-          isCreating && (
-            <ContactForm
-              headerText="Create contact"
-              save={create}
-              cancel={closeCreateForm}
-            />
-          )
-        }
-        <ControlsContainer>
-          <button onClick={openCreateForm}>
-            Add new contact
-          </button>
-          <input
-            onChange={event => this.setState({ search: event.target.value })}
-            placeholder="Search by name..."
-            type="text"
-            value={this.state.search}
+  return (
+    <div>
+      {
+        isEditing && (
+          <ContactForm
+            data={editingContact}
+            headerText="Edit contact"
+            save={update}
+            cancel={closeEditForm}
           />
-        </ControlsContainer>
-        <ContactsContainer>
-          {
-            this.contacts.map(contact => (
+        )
+      }
+      {
+        isCreating && (
+          <ContactForm
+            headerText="Create contact"
+            save={create}
+            cancel={closeCreateForm}
+          />
+        )
+      }
+      <ControlsContainer>
+        <button onClick={openCreateForm}>
+          Add new contact
+        </button>
+        <Input
+          name="search"
+          placeholder="Search by name..."
+          onChange={updateSearch}
+          value={search}
+        />
+      </ControlsContainer>
+      <ContactsContainer>
+        {
+          contacts
+            .filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()))
+            .map(contact => (
               <ContactDisplay
                 data={contact}
                 edit={openEditForm}
@@ -85,9 +79,10 @@ export default class ContactsList extends React.Component {
                 remove={remove}
               />
             ))
-          }
-        </ContactsContainer>
-      </div>
-    );
-  }
-}
+        }
+      </ContactsContainer>
+    </div>
+  );
+};
+
+export default ContactsList;

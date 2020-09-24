@@ -6,31 +6,27 @@ const ContactContainer = styled.div`
   width: 300px;
 `;
 
-export default class ContactDisplay extends React.Component {
-  static propTypes = {
-    data: shape({
-      email: string,
-      id: string,
-      name: string,
-      phone: string,
-    }).isRequired,
-    edit: func.isRequired,
-    remove: func.isRequired,
-  }
+const ContactDisplay = ({ data, edit, remove }) => (
+  <ContactContainer>
+    <h4>{ data.name }</h4>
+    <p>{ data.email }</p>
+    <p>{ data.phone }</p>
+    <div>
+      <button onClick={() => edit(data.id)}>Edit</button>
+      <button onClick={() => remove(data.id)}>Delete</button>
+    </div>
+  </ContactContainer>
+);
 
-  render () {
-    const { data, edit, remove } = this.props;
-    const { email, id, name, phone } = data;
-    return (
-      <ContactContainer>
-        <h4>{ name }</h4>
-        <p>{ email }</p>
-        <p>{ phone }</p>
-        <div>
-          <button onClick={() => edit(id)}>Edit</button>
-          <button onClick={() => remove(id)}>Delete</button>
-        </div>
-      </ContactContainer>
-    );
-  }
-}
+ContactDisplay.propTypes = {
+  data: shape({
+    email: string,
+    id: string,
+    name: string,
+    phone: string,
+  }).isRequired,
+  edit: func.isRequired,
+  remove: func.isRequired,
+};
+
+export default ContactDisplay;
