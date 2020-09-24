@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { func, shape, string } from 'prop-types';
+import { formatPhone, validEmail, validName, validPhone } from 'utils/validation';
 import Input from 'components/input';
 import { Modal, ModalBackground } from 'components/styled/modal';
 import { ButtonGroup } from 'components/styled/forms';
@@ -8,11 +9,16 @@ const ContactForm = ({ cancel, data, headerText, save }) => {
   const [email, setEmail] = useState(data?.email);
   const [name, setName] = useState(data?.name);
   const [phone, setPhone] = useState(data?.phone);
+  const isValid = validEmail(email) && validName(name) && validPhone(phone);
 
   const saveForm = event => {
     event.preventDefault();
-    const id = data?.id;
-    save({ email, id, name, phone });
+    save({
+      email,
+      id: data?.id,
+      name,
+      phone: formatPhone(phone),
+    });
   };
 
   return (
@@ -39,7 +45,7 @@ const ContactForm = ({ cancel, data, headerText, save }) => {
             value={phone}
           />
           <ButtonGroup>
-            <button type="submit">Save</button>
+            <button disabled={!isValid} type="submit">Save</button>
             <button onClick={cancel}>Cancel</button>
           </ButtonGroup>
         </form>

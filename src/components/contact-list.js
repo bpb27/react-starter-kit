@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { ContactsContext } from 'contexts/contacts';
-import ContactDisplay from 'components/contact-display';
+import ContactCard from 'components/contact-card';
 import Input from 'components/input';
 
 const Controls = styled.div`
@@ -36,7 +36,7 @@ const ContactsList = () => {
       </Controls>
       <List>
         {
-          list.map(contact => <ContactDisplay key={contact.id} {...contact}/>)
+          list.map(contact => <ContactCard key={contact.id} {...contact}/>)
         }
       </List>
     </div>
