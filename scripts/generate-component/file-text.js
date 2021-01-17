@@ -1,7 +1,7 @@
 const component = ({ titleCaseName }) => (`\
 import styled from 'styled-components';
 
-const Container = styled.div``;
+const Container = styled.div\`\`;
 
 const ${titleCaseName} = () => (
   <Container>
@@ -12,8 +12,8 @@ const ${titleCaseName} = () => (
 export default ${titleCaseName};
 `);
 
-const index = ({ dashCase, titleCaseName }) => (`\
-export ${titleCaseName} from './${dashCase}.component';
+const index = ({ dashCase }) => (`\
+export default from './${dashCase}.component';
 `);
 
 const test = ({ dashCase, titleCaseName }) => (`\
@@ -23,7 +23,7 @@ import ${titleCaseName} from './${dashCase}.component';
 describe('${titleCaseName}', () => {
   it('renders', () => {
     render(<${titleCaseName}/>);
-    expect(screen.getByText('${titleCaseName}')).toBeInTheDocument();
+    expect(screen.getByText('${titleCaseName} component!')).toBeInTheDocument();
   });
 });
 `);
