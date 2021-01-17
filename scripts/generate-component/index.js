@@ -21,14 +21,12 @@ const generate = async ({ directory, componentName }) => {
   const componentPath = `${directoryPath}/${componentName}`;
 
   const names = {
-    camelCaseName: camelize(componentName),
     dashCase: componentName,
     titleCaseName: upperFirst(camelize(componentName)),
   };
 
   await fs.mkdir(componentPath);
   await fs.writeFile(`${componentPath}/${componentName}.component.js`, fileText.component(names));
-  await fs.writeFile(`${componentPath}/${componentName}.style.scss`, fileText.style(names));
   await fs.writeFile(`${componentPath}/${componentName}.test.js`, fileText.test(names));
   await fs.writeFile(`${componentPath}/index.js`, fileText.index(names));
 

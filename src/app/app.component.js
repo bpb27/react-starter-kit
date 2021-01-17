@@ -1,12 +1,13 @@
-import React from 'react';
-import './app.style.scss';
+import styled from 'styled-components';
 
-export default class App extends React.Component {
-  render () {
-    return (
-      <div className="app">
-        Sample App
-      </div>
-    );
-  }
-}
+const Container = styled.div`
+  font-family: monospace;
+`;
+
+const App = () => (
+  <Container>
+    Sample App
+  </Container>
+);
+
+export default App;
