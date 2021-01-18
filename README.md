@@ -2,27 +2,27 @@
 Everything you need to build and deploy a React app.
 
 ### About
-1. WebPack + Babel with dev server and hot module reload
-2. Mini Node/Express server for serving your app
-3. Customizable ESLint pre-configured for React
-4. Customizable component generation script
-5. Setup for Jest/Enzyme unit tests
-6. Setup for SCSS
-7. Setup for CI w/ Travis and deployment w/ Heroku
+1. React 17+, styled components, and React Testing Library
+2. Configured with Webpack, Babel, and ESLint
+3. Customizable component generation script
+4. Small Node/Express server to deliver the app and add API endpoints
+5. Setup for CI w/ Travis and deployment w/ Heroku
 
 ### Setup
-`npm i`
+1. `npm i` (install client dependencies)
+2. `cd server`
+3. `npm i` (install server dependencies)
 
 ### Development
-`npm run dev`
+1. `npm run dev` (start client dev server)
+2. `cd server`
+3. `npm start` (start node server if you need API interaction)
 
 ### Running a build with the node server
-`npm run build`
-`npm run start`
-
-### Additional
-1. Unit testing: `npm run test`
-2. Generate component: `npm run generate`
+1. `npm run build`
+2. `cd server`
+3. `npm start`
+4. Go to http://localhost:3000
 
 ### Deploying
 This can be deployed to Heroku in just a few minutes.
@@ -31,10 +31,7 @@ This can be deployed to Heroku in just a few minutes.
 2. Create a [new app](https://dashboard.heroku.com/apps)
 3. Go to the deploy section and connect to a Github repo
 4. Enable automatic deploys of master
-
-That's it. Heroku will automatically know what to do when it sees the node server, `npm build`, and `npm start`.
-
-Go to the settings section to see your domain, and check out your app on the internet.
+5. Heroku automatically runs the `build` and `start` scripts
 
 ### Setup CI
 You can easily add Travis to run all your tests for you every time you push.
@@ -43,5 +40,3 @@ You can easily add Travis to run all your tests for you every time you push.
 2. Add your Github repo
 3. Change the README badge at the very top to point to your app
 4. In Heroku, go to the deploy tab and check the "Wait for CI" box
-
-That's it. Travis is free for public repos.

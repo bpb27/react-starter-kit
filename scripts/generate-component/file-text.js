@@ -1,50 +1,29 @@
-const component = ({ camelCaseName, dashCase, titleCaseName }) => (`\
-import React from 'react';
-import { string } from 'prop-types';
-import './${dashCase}.style.scss';
+const component = ({ titleCaseName }) => (`\
+import styled from 'styled-components';
 
-export default class ${titleCaseName} extends React.Component {
-  static propTypes = {
-    name: string,
-  }
+const Container = styled.div\`\`;
 
-  render () {
-    return (
-      <div className="${camelCaseName}">
-        ${dashCase} component!
-      </div>
-    );
-  }
-}
-`);
-
-const index = ({ dashCase, titleCaseName }) => (`\
-import ${titleCaseName} from './${dashCase}.component';
+const ${titleCaseName} = () => (
+  <Container>
+    ${titleCaseName} component!
+  </Container>
+);
 
 export default ${titleCaseName};
 `);
 
-const style = ({ camelCaseName }) => (`\
-.${camelCaseName} {
-
-}
+const index = ({ dashCase }) => (`\
+export default from './${dashCase}.component';
 `);
 
-const test = ({ camelCaseName, dashCase, titleCaseName }) => (`\
-import React from 'react';
-import { shallow } from 'enzyme';
+const test = ({ dashCase, titleCaseName }) => (`\
+import { render, screen } from '@testing-library/react';
 import ${titleCaseName} from './${dashCase}.component';
-
-const createProps = () => ({
-  name: 'Warren Gangrenous Harding',
-});
 
 describe('${titleCaseName}', () => {
   it('renders', () => {
-    const props = createProps();
-    const wrapper = shallow(<${titleCaseName} {...props} />);
-    const element = wrapper.find('.${camelCaseName}');
-    expect(element.exists()).toEqual(true);
+    render(<${titleCaseName}/>);
+    expect(screen.getByText('${titleCaseName} component!')).toBeInTheDocument();
   });
 });
 `);
@@ -52,6 +31,5 @@ describe('${titleCaseName}', () => {
 module.exports = {
   component,
   index,
-  style,
   test,
 };
