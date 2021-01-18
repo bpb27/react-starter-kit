@@ -9,17 +9,19 @@ Everything you need to build and deploy a React app.
 5. Setup for CI w/ Travis and deployment w/ Heroku
 
 ### Setup
-1. `npm i`
+1. `npm i` (install client dependencies)
 2. `cd server`
-3. `npm i`
+3. `npm i` (install server dependencies)
 
 ### Development
-1. `npm start`
+1. `npm run dev` (start client dev server)
+2. `cd server`
+3. `npm start` (start node server if you need API interaction)
 
 ### Running a build with the node server
 1. `npm run build`
 2. `cd server`
-3. `npm run start`
+3. `npm start`
 4. Go to http://localhost:3000
 
 ### Deploying
@@ -29,10 +31,7 @@ This can be deployed to Heroku in just a few minutes.
 2. Create a [new app](https://dashboard.heroku.com/apps)
 3. Go to the deploy section and connect to a Github repo
 4. Enable automatic deploys of master
-
-TODO: Figure out Heroku w/ split client and server
-
-Go to the settings section to see your domain, and check out your app on the internet.
+5. Heroku automatically runs the `build` and `start` scripts
 
 ### Setup CI
 You can easily add Travis to run all your tests for you every time you push.
@@ -41,5 +40,3 @@ You can easily add Travis to run all your tests for you every time you push.
 2. Add your Github repo
 3. Change the README badge at the very top to point to your app
 4. In Heroku, go to the deploy tab and check the "Wait for CI" box
-
-That's it. Travis is free for public repos.

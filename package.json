@@ -2,11 +2,15 @@
   "name": "react-starter-kit",
   "version": "1.0.0",
   "description": "React-Node app ready to go",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "./scripts/build.sh",
+    "dev": "webpack-dev-server --mode development",
     "generate": "node ./scripts/generate-component",
-    "start": "webpack-dev-server --mode development",
+    "start": "node ./server",
     "test": "jest ./src"
   },
   "author": "Brendan Brown",
