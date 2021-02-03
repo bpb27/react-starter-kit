@@ -15,14 +15,12 @@ Everything you need to build and deploy a React app.
 
 ### Development
 1. `npm run dev` (start client dev server)
-2. `cd server`
-3. `npm start` (start node server if you need API interaction)
+2. `npm start` (start node server if you need API interaction)
 
 ### Running a build with the node server
 1. `npm run build`
-2. `cd server`
-3. `npm start`
-4. Go to http://localhost:3000
+2. `npm start`
+3. Go to http://localhost:3000
 
 ### Deploying
 This can be deployed to Heroku in just a few minutes.

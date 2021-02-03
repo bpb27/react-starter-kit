@@ -31,7 +31,9 @@ module.exports = {
     ],
   },
   plugins: [
+    // removes everything in the output path (/dist)
     new CleanWebpackPlugin(),
+    // adds the hashed script and style output to index.html
     new HtmlWebpackPlugin({
       favicon: 'public/favicon.ico',
       filename: 'index.html',
@@ -39,7 +41,9 @@ module.exports = {
       inject: false,
       template: './public/index.html',
     }),
+    // hashes the script?
     new WebpackMd5Hash(),
+    // gzips build output
     new CompressionPlugin(),
   ],
 };
