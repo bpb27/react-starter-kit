@@ -9,6 +9,7 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "dev": "webpack-dev-server --mode development",
+    "format": "prettier src/**/*.js --write --config ./.prettierrc.js",
     "generate": "node ./scripts/generate-component",
     "start": "node ./server",
     "test": "jest ./src"
@@ -43,6 +44,7 @@
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
     "node-fetch": "^2.6.1",
+    "prettier": "^2.2.1",
     "readline": "^1.3.0",
     "tar": "^6.0.5",
     "webpack": "^4.44.2",

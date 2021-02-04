@@ -4,10 +4,6 @@ const Container = styled.div`
   font-family: monospace;
 `;
 
-const App = () => (
-  <Container>
-    Sample App
-  </Container>
-);
+const App = () => <Container>Sample App</Container>;
 
 export default App;

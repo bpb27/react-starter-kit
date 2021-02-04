@@ -1,3 +1,4 @@
+# chmod u+x ./scripts/build.sh
 # install client dependencies
 npm i
 # install server dependencies

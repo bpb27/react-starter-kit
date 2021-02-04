@@ -18,17 +18,14 @@ readline.question('enter the directory (e.g. src/pages)\n', (directory) => {
 
 const generate = async ({ directory, componentName }) => {
   const directoryPath = (directory[directory.length - 1] === '/' ? directory.slice(0, -1) : directory);
-  const componentPath = `${directoryPath}/${componentName}`;
 
   const names = {
     dashCase: componentName,
     titleCaseName: upperFirst(camelize(componentName)),
   };
 
-  await fs.mkdir(componentPath);
-  await fs.writeFile(`${componentPath}/${componentName}.component.js`, fileText.component(names));
-  await fs.writeFile(`${componentPath}/${componentName}.test.js`, fileText.test(names));
-  await fs.writeFile(`${componentPath}/index.js`, fileText.index(names));
+  await fs.writeFile(`${directoryPath}/${componentName}.js`, fileText.component(names));
+  await fs.writeFile(`${directoryPath}/${componentName}.test.js`, fileText.test(names));
 
   console.log('\nsuccess!'); // eslint-disable-line no-console
 };

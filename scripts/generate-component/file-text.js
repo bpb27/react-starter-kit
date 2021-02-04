@@ -12,10 +12,6 @@ const ${titleCaseName} = () => (
 export default ${titleCaseName};
 `);
 
-const index = ({ dashCase }) => (`\
-export default from './${dashCase}.component';
-`);
-
 const test = ({ dashCase, titleCaseName }) => (`\
 import { render, screen } from '@testing-library/react';
 import ${titleCaseName} from './${dashCase}.component';
@@ -30,6 +26,5 @@ describe('${titleCaseName}', () => {
 
 module.exports = {
   component,
-  index,
   test,
 };
