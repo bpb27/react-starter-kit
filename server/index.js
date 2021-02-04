@@ -1,22 +1,27 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
 const { NODE_ENV, PORT } = process.env;
+import express from 'express';
+import favicon from 'express-favicon';
+import staticGzip from 'express-static-gzip';
+import sslRedirect from 'heroku-ssl-redirect';
+import cors from 'cors';
+import path from 'path';
+import helmet from 'helmet';
+import { fileURLToPath } from 'url';
 
-const express = require('express');
-const favicon = require('express-favicon');
-const staticGzip = require('express-static-gzip');
-const sslRedirect = require('heroku-ssl-redirect').default;
-const cors = require('cors');
-const path = require('path');
-const helmet = require('helmet');
-
-const app = express();
-const port = PORT || 3000;
-const isProd = NODE_ENV === 'prod';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const pathDist = path.join(__dirname, '../dist');
 const pathPublic = path.join(__dirname, '../public');
+const port = PORT || 3000;
+const isProd = NODE_ENV === 'prod';
+
+const app = express();
 
 // security headers
-app.use(sslRedirect());
+app.use(sslRedirect.default());
 app.use(helmet.dnsPrefetchControl());
 app.use(helmet.expectCt());
 app.use(helmet.frameguard());
@@ -26,8 +31,8 @@ app.use(helmet.ieNoOpen());
 app.use(helmet.permittedCrossDomainPolicies());
 app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
-// app.use(helmet.contentSecurityPolicy()); // need to whitelist a number of scripts and styles
-// app.use(helmet.noSniff()); // seems to cause problems with react suspense js snippets
+// app.use(helmet.contentSecurityPolicy());
+// app.use(helmet.noSniff());
 
 // serve static assets in dist and public folders
 app.use(favicon(`${pathPublic}/favicon.ico`));
