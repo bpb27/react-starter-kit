@@ -2,6 +2,9 @@
   "name": "react-starter-kit-server",
   "version": "1.0.0",
   "description": "Node server for React app",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

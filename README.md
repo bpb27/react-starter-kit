@@ -8,6 +8,9 @@ Everything you need to build and deploy a React app.
 4. Small Node/Express server to deliver the app and add API endpoints
 5. Setup for CI w/ Travis and deployment w/ Heroku
 
+## Requirements
+Node 14+
+
 ### Setup
 1. `npm i` (install client dependencies)
 2. `cd server`
